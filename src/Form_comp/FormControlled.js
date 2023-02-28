@@ -9,14 +9,29 @@ const FormControlled = () => {
         phone: ""
     }) 
 
+    const [person, setPerson] = React.useState([])
+
+    const ele = person.map(function(file, item){
+        const {fName, email, phone} = file
+        return(
+            <div key={item}>
+                <h3>{fName}</h3>
+                <h3>{email}</h3> 
+                <h3>{phone}</h3> 
+                <hr/>
+            </div>
+        )
+    })
+
 
 
     function handleChange(event){
+        const {name , value} = event.target
         setFile(function(item){
             return(
                 {
                     ...item,
-                    [event.target.name] : event.target.value
+                    [name] : value
                 }
             )
         })
@@ -25,8 +40,9 @@ const FormControlled = () => {
     function handleSubmit(event){
         event.preventDefault()
         if(file.fName && file.email && file.phone ){
+            const newFile = {...file}
+            setPerson([...person,newFile])
             console.log(file)
-
         }
 
         else{
@@ -42,13 +58,20 @@ const FormControlled = () => {
   return (
     <div>
         <form onSubmit={handleSubmit}>
-            <input placeholder='enter fname' id='fName' type='text' name='fName' value={file.fName} onChange={handleChange}/> <br/>
-            <input placeholder='enter email' type='text' name='email' value={file.email} onChange={handleChange} /> <br/>
-            <input placeholder='enter phone' type='text' name='phone' value={file.phone} onChange={handleChange} /> <br/>
+            <label htmlFor='fName'>Name : </label>
+            <br/>     
+            <input placeholder='enter fname' id='fName' type='text' name='fName' value={file.fName} onChange={handleChange}/>
+            <br/>         
+            <label htmlFor='email'>Email : </label> <br/>     
+            <input placeholder='enter email' type='text' name='email' value={file.email} onChange={handleChange} /> 
+            <br/>
+            <label htmlFor='phone'>Phone : </label> <br/>     
+            <input placeholder='enter phone' type='text' name='phone' value={file.phone} onChange={handleChange} />
+             <br/>
             <button>Submit</button>
         </form>
         <div>
-
+            {ele}
         </div>
 
     </div>
