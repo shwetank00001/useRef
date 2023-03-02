@@ -2,7 +2,7 @@ import React from 'react'
 import Modal from './Modal'
 // import data from '../data.js'
 
-const Index = () => {
+const UseRed_multiStates = () => {
 
   const [name,setName] = React.useState('')
   const [people, setPeople] = React.useState([])
@@ -49,4 +49,4 @@ const Index = () => {
   )
 }
 
-export default Index
+export default UseRed_multiStates

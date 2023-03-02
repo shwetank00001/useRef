@@ -1,30 +1,54 @@
 import React from 'react'
 import Modal from './Modal'
 
-//using Reducer
+const UseRed_multiStates = () => {
 
-const Index = () => {
+    // function reducer(state,action){
+    //   if(action.type === 'TESTING'){
+    //     return {
+    //       ...state,
+    //       people:["data" , "shwetank"],
+    //       showModal: true,
+    //       modalContent:"Item added in the list"    
+    //     }
+    //   }
+    //   throw new Error('No item   found')
+    // }
 
     function reducer(state,action){
-      console.log(state,action)
-      if(action.type ==='ADD_ITEM'){ 
+      const newPeople= [...state.people, action.payload]
+
+      if(action.type === 'ADD_ITEM'){
         return {
           ...state,
-          people: [],
-          isModal:true,
-          modalContent:"Item Added"
+          people:newPeople,
+          showModal: true,
+          modalContent:"Item added in the list"    
         }
-      }  //always return state
-      return(state)
-    }
+      }
 
-    const defaultState = {
-        people: [],
-        isModal: false,
-        modalContent:'hello world'
+      if(action.type==='NO_VALUE'){
+        return {
+          ...state,
+          showModal: true,
+          modalContent:"No new item added"    
+        }
+      }
+      throw new Error('No item found')
     }
+  
+  
+  const defaultState= {
+    people: [],
+    showModal: false,
+    modalContent:"Hello"
+  }
+
   const [name,setName] = React.useState('')
-  const [state, dispatch] = React.useReducer(reducer,defaultState)
+  const [state, dispatch] = React.useReducer(reducer, defaultState)
+
+
+
 //   const [people, setPeople] = React.useState([])
 //   const [showModal, setShowModal] = React.useState(false)
 
@@ -41,18 +65,19 @@ const Index = () => {
   function handleSubmit(event){
     event.preventDefault()
     if(name){
-      const file = []
-      dispatch({type:"ADD_ITEM"})
+      const newPeople = [name]
+        dispatch({type: "ADD_ITEM" , payload: newPeople})
+        setName('')
     }
     else{
-        dispatch({type:"RANDOM"})
+      dispatch({type:"NO_VALUE"})
     }
   }
 
 
   return (
     <div>
-      { state.isModal && <Modal modalContent={state.modalContent} /> }
+      { state.showModal && <Modal modal={state.modalContent} /> }
 
       <form onSubmit={handleSubmit}>
         <div>
@@ -65,4 +90,4 @@ const Index = () => {
   )
 }
 
-export default Index
+export default UseRed_multiStates

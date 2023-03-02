@@ -1,13 +1,10 @@
 import React from 'react'
 
-
 const Modal = (props) => {
   return (
     <div>
-      <p>
-        {props.modalContent}
-      </p>
-    </div>
+      <h3>{props.modal}</h3>
+      </div>
   )
 }
 
