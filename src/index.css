@@ -8,9 +8,27 @@ body {
   background-color: #222233;
   /* color: #CFA7f6; */
   color: white;
+
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.content{
+  display: flex;
+  gap:10%;
+  justify-content: space-evenly;
+  padding: 10px;
+}
+
+.content >button{
+  background-color: black;
+  color: white;
+  padding: 10px;
+}
+
+.button{
+  cursor: pointer;
 }

@@ -1,13 +1,13 @@
 import React from 'react'
 // import FormControlled from './Form_comp/FormControlled';
 // import Useres from './useRef/Useres';
- import UseReducerTest from './useReducer/UseReducerTest';
+ import UseReducer from './useReducer/UseReducer';
 
 
 function App() {
   return (
     <div className="App">
-      <UseReducerTest/>
+      <UseReducer/>
     </div>
   );
 }

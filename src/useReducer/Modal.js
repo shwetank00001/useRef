@@ -1,9 +1,16 @@
 import React from 'react'
 
 const Modal = (props) => {
+
+  // React.useEffect(function(){
+  //   setTimeout(function(){
+  //     props.closeModal();
+  //   }, 3000)
+  // })
+  
   return (
     <div>
-      <h3>{props.modal}</h3>
+      <p>{props.modal}</p>
       </div>
   )
 }
