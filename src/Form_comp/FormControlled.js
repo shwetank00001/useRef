@@ -12,12 +12,11 @@ const FormControlled = () => {
     const [person, setPerson] = React.useState([])
 
     const ele = person.map(function(file, item){
-        const {fName, email, phone} = file
         return(
             <div key={item}>
-                <h3>{fName}</h3>
-                <h3>{email}</h3> 
-                <h3>{phone}</h3> 
+                <h3>Name: {file.fName}</h3>
+                <h3>Email: {file.email}</h3> 
+                <h3>Phone: {file.phone}</h3> 
                 <hr/>
             </div>
         )

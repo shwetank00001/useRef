@@ -23,7 +23,7 @@ const UseReducer = () => {
             }
         }
         if(action.type==="REMOVE"){
-            const newData = state.value.filter((item) => item.id !== action.payload)
+            const newData = state.value.filter((item) => item.id !== action.payload) 
             return{
                 ...state,
                 value:newData,
