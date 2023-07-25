@@ -1,14 +1,11 @@
 import React from 'react'
-// import FormControlled from './Form_comp/FormControlled';
-// import Useres from './useRef/Useres';
-//  import UseReducer from './useReducer/UseReducer';
-import Red from './useReducer/Red'
+import Main from './Main'
 
 
 function App() {
   return (
     <div className="App">
-      <Red />
+      <Main />
     </div>
   );
 }
