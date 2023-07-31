@@ -20,6 +20,17 @@ const Post = () => {
     getAllPosts()
   }, [])
 
+  function handleDelete(item){
+    
+    try {
+      axios.delete(`http://localhost:5000/posts/${item._id}`)
+      console.log(`Item deleted with ID: ${item._id}`)
+      getAllPosts()
+    } catch (error) {
+      console.log({message: error})
+    }
+  }
+
   const ele = allPost.map(function(item){
     return(
       <div key={item._id}>
@@ -28,6 +39,8 @@ const Post = () => {
         <h3>{item.message}</h3>
         <h3>{item.tags}</h3>
         <img src={item.selectedFile} />
+
+        <button onClick={ () => handleDelete(item)}>Remove</button>
         
 
         <br></br>
