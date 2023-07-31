@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import { getAllPosts } from './Post'
 
 const Form = () => {
     
@@ -24,13 +25,12 @@ const Form = () => {
     }
 
     async function handleSubmit(e){
-        e.preventDefault()
+        // e.preventDefault()
         console.log(data)
 
         try{
             const res = await axios.post( 'http://localhost:5000/posts', data )
             console.log("Data has been sent", res.data)
-
         } catch(err){
             console.log("Error sending data to DB" , err)
         }
