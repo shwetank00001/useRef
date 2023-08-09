@@ -3,19 +3,15 @@ const initialState = {
 }
 
 
-function counterReducer(state = [initialState], action){
-    if(action.type === "Add"){
-        return({
-            ...state,
-            count: state + 1
-        })
-    }
-    if(action.type === "Sub"){
-        return({
-            ...state,
-            count: state - 1
-        })
-    }
+const counterReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case 'Add':
+          return { ...state, count: state.count + 1 };
+        case 'Sub':
+          return { ...state, count: state.count - 1 };
+        default:
+          return state;
+      }
 }
 
 export default counterReducer
