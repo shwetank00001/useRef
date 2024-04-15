@@ -2,70 +2,66 @@ import React from 'react'
 
 const Pract = () => {
 
-    const [data, setData ] = React.useState([])
+    const [data, setData] = React.useState([]) 
+
 
     function reducer(state,action){
-
         if(action.type === "ADD"){
-            const newData = [...state.value, action.payload]
+            const newValue = [...state.value, action.payload] 
             return{
                 ...state,
-                value: newData
+                value:newValue
             }
         }
 
-        if(action.type === "Del"){
-            const deletedData = state.value.filter((item) => item.id!== action.payload)
-
+        if(action.type === "DEL"){
+            const newValue = state.value.filter( (item) => item.id!==action.payload)
             return{
                 ...state,
-                value: deletedData
+                value: newValue
             }
         }
-
     }
 
-    const defaultState = {
-        value: []
+    const defaultState ={
+        value:[]
     }
 
-    const [state, dispatch ] = React.useReducer(reducer, defaultState)
+    const [state, dispatch] = React.useReducer(reducer, defaultState)
 
-        const ele = state.value.map(function (item) {
-            return (
-                <div key={item.id}>
-                    <p>{item.data}</p>
-                    <span>
-                        <button onClick={() => handleDelete(item.id)}>
-                            Delete
-                        </button>
-                    </span>
-                </div>
-            );
-        });
+    const ele = state.value.map(function(item){
+        return(
+            <div key={item.id}>
+                <h4>{item.data}</h4>
+                <button onClick={(e) => {
+                    e.preventDefault()
+                    handleDelete(item.id)
+                    }}>-</button>
+            </div>
+        )
+    })
 
-
-    const handleAdd = (e) => {
+    function handleAdd(e){
         e.preventDefault()
         if(data){
-            const newData = {id: new Date().getTime(), data}
-            dispatch({type: "ADD", payload: newData})
+            const newData = { id: new Date().getTime(), data}
+            dispatch({type:"ADD", payload: newData})
         }
     }
 
     function handleDelete(id){
-        dispatch({type:"Del", payload: id})
+        dispatch({type:"DEL", payload:id})
     }
 
 
-  return (
+    return (
     <div>
         <form>
-            <h4>Please add to the list</h4>
-            <input type='text' value={data} name='data' onChange = {(e) => setData(e.target.value)}/>
+            <h3>Add a value</h3>
+            <input value={data} name='value' onChange={(e) => setData(e.target.value)} />
             <button onClick={handleAdd}>Add</button>
+            {ele}
         </form>
-        {ele}
     </div>
   )
 }
